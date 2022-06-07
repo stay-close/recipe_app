@@ -5,26 +5,26 @@ import Result from "./components/result/Result";
 const searchApi = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState("");
+  const [data, setData] = useState(false);
+  const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
   
   // search for the recipe
   const searchRecipes = async () => {
-    setIsLoading(true);
-    const url = searchApi + query
+    setData(true);
+    const url = searchApi + search;
     const res = await fetch(url);
     const data = await res.json();
     setRecipes(data.meals);
-    setIsLoading(false);
+    setData(false);
   };
 
   useEffect(() => {
     searchRecipes()
   }, []);
 
-  const handleClick = (event) => {
-    event.preventDefault();
+  const handleClick = (e) => {
+    e.preventDefault();
     searchRecipes();
   }
 
@@ -32,9 +32,9 @@ function App() {
     <div className="container">
       <h2>Our Food Recipes</h2>
       <SearchBar
-        isLoading={isLoading}
-        query={query}
-        setQuery={setQuery}
+        data={data}
+        search={search}
+        setSearch={setSearch}
         handleClick={handleClick}
       />
       <div className="recipes">

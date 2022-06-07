@@ -3,22 +3,22 @@ import "./SearchBar.css";
 
 const SearchBar = ({
     handleClick,
-    query,
-    isLoading,
-    setQuery
+    search,
+    data,
+    setSearch
 }) => {
     return (
         <form onSubmit={handleClick}>
             <input 
-                value={query}
+                value={search}
                 className="form-control"
                 placeholder="Search Recipe"
                 name="query"
-                disabled={isLoading}
-                onChange={(e) => setQuery(e.target.value)}
+                disabled={data}
+                onChange={(e) => setSearch(e.target.value)}
             />   
             <input
-                disabled={isLoading || !query}
+                disabled={data || !search}
                 type="submit"
                 className="btn"
                 value="Search"
